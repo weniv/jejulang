@@ -89,7 +89,7 @@
         "options": [
             "해",
             "달",
-            "별",
+            "겨울",
             "구름"
         ],
         "correctAnswer": 1,
@@ -181,20 +181,94 @@
         "cultural_note": "제주의 드르는 화산활동으로 형성된 독특한 지형적 특징을 가지고 있습니다."
     },
     {
-        "id": 12,
+        "id": 13,
         "difficulty": "elementary",
         "type": "multiple_choice",
         "category": "basic_vocabulary",
-        "question": "'시리'는 무슨 뜻일까요?",
+        "question": "'게염지'는 무슨 뜻일까요?",
         "options": [
-            "소리",
-            "빗자루",
-            "신발",
-            "연필"
+            "물고기",
+            "개미",
+            "게살",
+            "게장"
         ],
         "correctAnswer": 1,
-        "explanation": "'시리'는 '빗자루'를 의미하는 제주어입니다.",
-        "usage_example": "시리로 쓸어라 (빗자루로 쓸어라)"
+        "explanation": "'게염지'는 '게미'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 14,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'폴'는 무슨 뜻일까요?",
+        "options": [
+            "풀쩍",
+            "풀죽",
+            "팔",
+            "풀"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'폴'는 '팔'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 15,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'머리'를 나타내는 제주어는 무엇일까요?",
+        "options": [
+            "대멍이",
+            "미라",
+            "데멩이",
+            "다머리"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'데멩이'는 '머리'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 16,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'양지'는 무슨 뜻일까요?",
+        "options": [
+            "양파",
+            "비옥한 땅",
+            "양배추",
+            "얼굴"
+        ],
+        "correctAnswer": 3,
+        "explanation": "'양지'는 '얼굴'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 17,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'발꼽데기'는 무슨 뜻일까요?",
+        "options": [
+            "발",
+            "발가락",
+            "발목",
+            "발등"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'발꼽데기'는 '발가락'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 18,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'동무릅'는 무슨 뜻일까요?",
+        "options": [
+            "무릎",
+            "개미",
+            "게살",
+            "게장"
+        ],
+        "correctAnswer": 0,
+        "explanation": "'동무릅'는 '무릎'을 의미하는 제주어입니다."
     }
 ],
 "metadata": {
