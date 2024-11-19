@@ -363,9 +363,63 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
+        .home-link {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: #2e6ff2;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .home-link:hover {
+            transform: scale(1.1);
+        }
+
+        .home-link img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .github-link {
+            position: fixed;
+            top: 20px;
+            right: 70px;
+            width: 40px;
+            height: 40px;
+            background-color: #2e6ff2;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .github-link:hover {
+            transform: scale(1.1);
+        }
+
+        .github-link img {
+            width: 24px;
+            height: 24px;
+        }
     </style>
 </head>
 <body>
+    <a href="https://weniv.co.kr/" class="home-link">
+        <img src="asset/img/logo.svg" alt="홈으로 가기">
+    </a>
+    <a href="https://github.com/weniv/jejulang" class="github-link">
+        <img src="asset/img/github-mark-white.svg" alt="깃헙으로 가기">
+    </a>
     <div class="container">
         <header>
             <h1>제주어 퀴즈</h1>
