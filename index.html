@@ -321,11 +321,29 @@
             margin-bottom: 0;
         }
 
+        .progress-text {
+            text-align: right;
+        }
+
         @media (max-width: 768px) {
             .container {
                 margin: 1rem auto;
                 padding: 1rem;
-                width: 95%;
+                width: 80%;
+            }
+
+            .question {
+                margin-bottom: 1rem;
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
+            .controls {
+                gap: 10px;
+            }
+
+            .controls button {
+                padding: 0.5rem 0.8rem;
             }
 
             .quiz-container {
@@ -411,6 +429,66 @@
             width: 24px;
             height: 24px;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 300px;
+        }
+
+        .modal-content input {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            margin: 1rem 0;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+        }
+
+        .modal-content button {
+            margin: 0.5rem;
+        }
+
+        .battle-result {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+        }
+
+        .ranking-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ranking-list li {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .ranking-list li.current-user {
+            background-color: #e3f2fd;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -428,6 +506,7 @@
                 <button onclick="setDifficulty('중급')">중급</button>
                 <button onclick="setDifficulty('고급')">고급</button>
                 <button onclick="setRandomQuiz()">랜덤</button>
+                <!-- <button onclick="showBattleModal()">대결</button> -->
             </div>
         </header>
     
@@ -448,6 +527,17 @@
         <div class="review-container" style="display: none;"></div>
     </div>
 
+    <!-- 대결 모드 입장 모달 -->
+    <div id="battleModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>대결 모드</h2>
+            <input type="text" id="userName" placeholder="이름을 입력하세요" />
+            <input type="text" id="courseId" placeholder="코스 번호를 입력하세요 (1-1000)" />
+            <button onclick="startBattle()">시작하기</button>
+            <button onclick="closeBattleModal()">취소</button>
+        </div>
+    </div>
+
     <script>
         let currentQuestions = [];
         let currentQuestionIndex = 0;
@@ -455,6 +545,11 @@
         let selectedAnswer = null;
         let wrongAnswers = []; // 오답 저장 배열
         let backgroundImages = Array.from({length: 15}, (_, i) => `${i + 1}.png`);
+
+        // API 관련 상수
+        const API_BASE_URL = 'https://eduapi.weniv.co.kr';
+        let currentCourseId = null;
+        let currentUserName = null;
 
         async function loadQuestions() {
             try {
@@ -641,7 +736,7 @@
             return array;
         }
 
-        function showResult() {
+        async function showResult() {
             const resultElement = document.querySelector('.result');
             const progressElement = document.querySelector('.quiz-progress');
             const controlsElement = document.querySelector('.controls');
@@ -667,30 +762,61 @@
 
             const roundedScore = Math.round(percentage / 10) * 10;
 
-            resultElement.innerHTML = `
-                <p class="score">점수: ${percentage.toFixed(1)}점! (${score}/${currentQuestions.length})</p>
-                <p class="message">${messages[roundedScore]}</p>
-                <p class="encourage">틀린 문제에 대한 설명을 아래에서 확인해보세요!</p>
-                <button class="reload" onclick="location.reload()">다시 시작</button>
-            `;
-            
-            // 오답 리뷰 표시
-            if (wrongAnswers.length > 0) {
-                const reviewContainer = document.querySelector('.review-container');
-                reviewContainer.innerHTML = `
-                    <h2>오답 노트</h2>
-                    ${wrongAnswers.map((item, index) => `
-                        <div class="review-item">
-                            <h3>${index + 1}. ${item.question}</h3>
-                            <p>제출한 답: ${item.userAnswer}</p>
-                            <p>정답: ${item.correctAnswer}</p>
-                            <p>설명: ${item.explanation}</p>
-                            ${item.cultural_note ? `<p>문화적 배경: ${item.cultural_note}</p>` : ''}
-                            ${item.usage_example ? `<p>사용 예시: ${item.usage_example}</p>` : ''}
-                        </div>
-                    `).join('')}
+            if (currentCourseId) {
+                // 대결 모드인 경우
+                const rankings = await submitBattleResult(percentage);
+                
+                let rankingHtml = `
+                    <div class="result-content">
+                        <p class="score">당신의 점수: ${percentage.toFixed(1)}점! (${score}/${currentQuestions.length})</p>
+                        <div class="battle-result">
+                            <h3>순위표</h3>
+                            <ul class="ranking-list">
                 `;
-                reviewContainer.style.display = 'block';
+
+                rankings.forEach((rank, index) => {
+                    const isCurrentUser = rank.userName === currentUserName;
+                    rankingHtml += `
+                        <li class="${isCurrentUser ? 'current-user' : ''}">
+                            ${index + 1}등: ${rank.userName} - ${rank.score}점
+                        </li>
+                    `;
+                });
+
+                rankingHtml += `
+                            </ul>
+                        </div>
+                    </div>
+                `;
+
+                resultElement.innerHTML = rankingHtml;
+            } else {
+
+                    resultElement.innerHTML = `
+                        <p class="score">점수: ${percentage.toFixed(1)}점! (${score}/${currentQuestions.length})</p>
+                        <p class="message">${messages[roundedScore]}</p>
+                        <p class="encourage">틀린 문제에 대한 설명을 아래에서 확인해보세요!</p>
+                        <button class="reload" onclick="location.reload()">다시 시작</button>
+                    `;
+                    
+                    // 오답 리뷰 표시
+                    if (wrongAnswers.length > 0) {
+                        const reviewContainer = document.querySelector('.review-container');
+                        reviewContainer.innerHTML = `
+                            <h2>오답 노트</h2>
+                            ${wrongAnswers.map((item, index) => `
+                                <div class="review-item">
+                                    <h3>${index + 1}. ${item.question}</h3>
+                                    <p>제출한 답: ${item.userAnswer}</p>
+                                    <p>정답: ${item.correctAnswer}</p>
+                                    <p>설명: ${item.explanation}</p>
+                                    ${item.cultural_note ? `<p>문화적 배경: ${item.cultural_note}</p>` : ''}
+                                    ${item.usage_example ? `<p>사용 예시: ${item.usage_example}</p>` : ''}
+                                </div>
+                            `).join('')}
+                        `;
+                        reviewContainer.style.display = 'block';
+                    }
             }
             
             resultElement.style.display = 'block';
@@ -703,6 +829,65 @@
             
             const progress = (currentQuestionIndex / (currentQuestions.length - 1)) * 100;
             document.querySelector('.progress-bar').style.width = `${progress}%`;
+        }
+
+        // 대결 모달 표시
+        function showBattleModal() {
+            document.getElementById('battleModal').style.display = 'block';
+        }
+
+        // 대결 모달 닫기
+        function closeBattleModal() {
+            document.getElementById('battleModal').style.display = 'none';
+        }
+
+        // 대결 시작
+        async function startBattle() {
+            const userName = document.getElementById('userName').value;
+            const courseId = document.getElementById('courseId').value;
+            
+            if (!userName || !courseId) {
+                alert('이름과 코스 번호를 모두 입력해주세요!');
+                return;
+            }
+            
+            if (courseId < 1 || courseId > 1000) {
+                alert('코스 번호는 1-1000 사이의 숫자여야 합니다.');
+                return;
+            }
+
+            currentCourseId = courseId;
+            currentUserName = userName;
+
+            // 대결 모드용 10문제 고정 세트 설정
+            setRandomQuiz();
+            closeBattleModal();
+        }
+
+        // 결과 제출 및 랭킹 확인
+        async function submitBattleResult(score) {
+            try {
+                // 점수 제출
+                const response = await fetch(`${API_BASE_URL}/${currentCourseId}/course`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userName: currentUserName,
+                        score: score
+                    })
+                });
+
+                // 랭킹 조회
+                const rankingResponse = await fetch(`${API_BASE_URL}/${currentCourseId}/course`);
+                const rankings = await rankingResponse.json();
+                
+                return rankings;
+            } catch (error) {
+                console.error('Error submitting result:', error);
+                return null;
+            }
         }
     </script>
 </body>
