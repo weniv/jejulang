@@ -2,9 +2,9 @@
 "questions": [
     {
         "id": 1,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "사람",
         "question": "'하르방'은 제주어로 무슨 뜻일까요?",
         "options": [
             "할아버지",
@@ -18,9 +18,9 @@
     },
     {
         "id": 2,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "daily_conversation",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "생활",
         "question": "'가게 감수다'는 무슨 뜻일까요?",
         "options": [
             "가게 구경하다",
@@ -34,57 +34,54 @@
     },
     {
         "id": 3,
-        "difficulty": "middle",
-        "type": "multiple_choice",
-        "category": "weather",
-        "question": "'굿닭허다'는 무슨 뜻일까요?",
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'간드렁 호다'는 무슨 뜻일까요?",
         "options": [
-            "닭이 울다",
-            "날씨가 좋다",
-            "기분이 좋다",
-            "운이 좋다"
+            "간지럽다",
+            "간담이 서늘하다",
+            "시원하다",
+            "가쁜하다"
         ],
-        "correctAnswer": 1,
-        "explanation": "'굿닭허다'는 '날씨가 좋다'는 뜻입니다.",
-        "usage_example": "오널은 굿닭허다 (오늘은 날씨가 좋다)"
+        "correctAnswer": 2,
+        "explanation": "'간드렁 호다'는 '시원하다'는 뜻입니다."
         },
     {
         "id": 4,
-        "difficulty": "middle",
-        "type": "multiple_choice",
-        "category": "food",
-        "question": "'고르다'는 제주어로 무슨 뜻일까요?",
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'곱지다'는 무슨 뜻일까요?",
         "options": [
-            "선택하다",
-            "배고프다",
-            "깎다",
+            "곱다",
+            "고프다",
+            "숨기다",
             "모으다"
         ],
         "correctAnswer": 2,
-        "explanation": "'고르다'는 제주어로 '깎다'라는 뜻입니다.",
-        "usage_example": "감률 고르다 (귤을 깎다)"
+        "explanation": "'곱지다'는 '숨기다'라는 뜻입니다."
     },
     {
         "id": 5,
-        "difficulty": "high",
-        "type": "multiple_choice",
-        "category": "advanced_vocabulary",
-        "question": "'거념사리'는 무슨 뜻일까요?",
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'조들다'는 무슨 뜻일까요?",
         "options": [
-            "그늘",
-            "걱정",
-            "기억",
-            "그리움"
+            "쫄아들다",
+            "걱정하다",
+            "기억하다",
+            "빨리하다"
         ],
-        "correctAnswer": 2,
-        "explanation": "'거념사리'는 '기억'을 의미하는 제주어입니다.",
-        "usage_example": "거념사리에 삭혀둠서 (기억해 두었습니다)"
+        "correctAnswer": 1,
+        "explanation": "'조들다'는 '걱정하다'을 의미하는 제주어입니다."
     },
     {
         "id": 6,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "환경",
         "question": "'저슬'은 무슨 뜻일까요?",
         "options": [
             "해",
@@ -92,16 +89,14 @@
             "겨울",
             "구름"
         ],
-        "correctAnswer": 1,
-        "explanation": "'저슬'은 '달'을 의미하는 제주어입니다.",
-        "usage_example": "저슬이 밝아 (달이 밝다)",
-        "cultural_note": "제주도에서는 달빛과 관련된 민간신앙이 많이 전해져 왔습니다."
+        "correctAnswer": 2,
+        "explanation": "'저슬'은 '겨울'을 의미하는 제주어입니다."
     },
     {
         "id": 7,
-        "difficulty": "middle",
-        "type": "multiple_choice",
-        "category": "daily_conversation",
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
         "question": "'몬딱'은 무슨 뜻일까요?",
         "options": [
             "조금",
@@ -111,29 +106,28 @@
         ],
         "correctAnswer": 2,
         "explanation": "'몬딱'은 '모두' 또는 '전부'를 의미하는 제주어입니다.",
-        "usage_example": "몬딱 먹어사 (전부 먹어야 해)"
+        "usage_example": "몬딱 먹언? (전부 먹었어?)"
     },
     {
         "id": 8,
-        "difficulty": "high",
-        "type": "multiple_choice",
-        "category": "emotion",
-        "question": "'셍이'는 무슨 뜻일까요?",
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "감정",
+        "question": "'코시롱허다'는 무슨 뜻일까요?",
         "options": [
-            "걱정",
-            "기쁨",
-            "분노",
-            "귀찮음"
+            "코가 간지럽다",
+            "향기 좋다",
+            "행복하다",
+            "귀찮다"
         ],
-        "correctAnswer": 3,
-        "explanation": "'셍이'는 '귀찮음'을 의미하는 제주어입니다.",
-        "usage_example": "셍이 나 (귀찮다)"
+        "correctAnswer": 1,
+        "explanation": "'코시롱허다'는 '향기 좋다'을 의미하는 제주어입니다."
     },
     {
         "id": 9,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "food",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "음식",
         "question": "'마농'은 무슨 뜻일까요?",
         "options": [
             "마늘",
@@ -148,43 +142,39 @@
     },
     {
         "id": 10,
-        "difficulty": "middle",
-        "type": "multiple_choice",
-        "category": "weather",
-        "question": "'뒤웨'는 무슨 뜻일까요?",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "동물",
+        "question": "'도새기'는 무슨 뜻일까요?",
         "options": [
-            "흐림",
+            "바람",
+            "돼지",
             "태풍",
-            "비",
-            "더위"
+            "비"
         ],
         "correctAnswer": 1,
-        "explanation": "'뒤웨'는 '태풍'을 의미하는 제주어입니다.",
-        "usage_example": "뒤웨 분다 (태풍이 분다)",
-        "cultural_note": "제주도는 지리적 특성상 태풍의 영향을 자주 받아왔습니다."
+        "explanation": "'도새기'는 '돼지'을 의미하는 제주어입니다."
     },
     {
         "id": 11,
-        "difficulty": "high",
-        "type": "multiple_choice",
-        "category": "nature",
-        "question": "'드르'는 무슨 뜻일까요?",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "자연",
+        "question": "'바당'는 무슨 뜻일까요?",
         "options": [
             "바다",
             "산",
-            "들판",
+            "보다",
             "하늘"
         ],
-        "correctAnswer": 2,
-        "explanation": "'드르'는 '들판'을 의미하는 제주어입니다.",
-        "usage_example": "드르에 가난 (들판에 갔다)",
-        "cultural_note": "제주의 드르는 화산활동으로 형성된 독특한 지형적 특징을 가지고 있습니다."
+        "correctAnswer": 0,
+        "explanation": "'바당'는 '바다'를 의미하는 제주어입니다."
     },
     {
         "id": 13,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "동물",
         "question": "'게염지'는 무슨 뜻일까요?",
         "options": [
             "물고기",
@@ -197,9 +187,9 @@
     },
     {
         "id": 14,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "자연",
         "question": "'폴'는 무슨 뜻일까요?",
         "options": [
             "풀쩍",
@@ -212,9 +202,9 @@
     },
     {
         "id": 15,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "사람",
         "question": "'머리'를 나타내는 제주어는 무엇일까요?",
         "options": [
             "대멍이",
@@ -227,9 +217,9 @@
     },
     {
         "id": 16,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "사람",
         "question": "'양지'는 무슨 뜻일까요?",
         "options": [
             "양파",
@@ -242,9 +232,9 @@
     },
     {
         "id": 17,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "사람",
         "question": "'발꼽데기'는 무슨 뜻일까요?",
         "options": [
             "발",
@@ -257,9 +247,9 @@
     },
     {
         "id": 18,
-        "difficulty": "elementary",
-        "type": "multiple_choice",
-        "category": "basic_vocabulary",
+        "difficulty": "초급",
+        "type": "사지선다",
+        "category": "사람",
         "question": "'동무릅'는 무슨 뜻일까요?",
         "options": [
             "무릎",
@@ -269,6 +259,231 @@
         ],
         "correctAnswer": 0,
         "explanation": "'동무릅'는 '무릎'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 19,
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "자연",
+        "question": "'황고지'는 무슨 뜻일까요?",
+        "options": [
+            "황금",
+            "무지개",
+            "태양",
+            "별"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'황고지'는 '무지개'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 20,
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "사람",
+        "question": "'야개기'는 무슨 뜻일까요?",
+        "options": [
+            "아기",
+            "어린이",
+            "목",
+            "머리"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'야개기'는 '목'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 21,
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'하영'은 무슨 뜻일까요?",
+        "options": [
+            "하도록",
+            "하늘",
+            "많이",
+            "적게"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'하영'은 '많이'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 22,
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'오젠하난'은 무슨 뜻일까요?",
+        "options": [
+            "오늘하루",
+            "어제종일",
+            "내일하루",
+            "오시느라"
+        ],
+        "correctAnswer": 3,
+        "explanation": "'오젠하난'은 '오시느라'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 23,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "감정",
+        "question": "'지꺼졍'은 무슨 뜻일까요?",
+        "options": [
+            "내꺼다",
+            "너꺼다",
+            "기쁘다",
+            "슬프다"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'지꺼정'은 '기쁘다'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 24,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "감정",
+        "question": "'밥주리'는 무슨 뜻일까요?",
+        "options": [
+            "밥먹자",
+            "잠자리",
+            "밥줄래",
+            "별자리"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'밥주리'는 '잠자리'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 25,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'속솜허여'은 무슨 뜻일까요?",
+        "options": [
+            "속상하다",
+            "조용하다",
+            "편안하다",
+            "무섭다"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'속솜허여'은 '조용하다'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 26,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'정지'은 무슨 뜻일까요?",
+        "options": [
+            "부엌",
+            "정말",
+            "정해진",
+            "정리하다"
+        ],
+        "correctAnswer": 0,
+        "explanation": "'정지'는 '부엌'을 의미하는 제주어입니다."
+    },
+    {
+        "id": 27,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'둠비'는 무슨 뜻일까요?",
+        "options": [
+            "두부",
+            "먹이",
+            "물",
+            "물고기"
+        ],
+        "correctAnswer": 0,
+        "explanation": "'둠비'는 '두부'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 28,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "동물",
+        "question": "'제열'은 무슨 뜻일까요?",
+        "options": [
+            "제비",
+            "제주도",
+            "매미",
+            "제주도민"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'제열'은 '매미'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 29,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "동물",
+        "question": "영희네 어머님은 외출하시면서 영희에게 다음과 같이 말하였습니다. 무슨 뜻일까요? '밥 거려그넹 잘 촐령 먹으라!'",
+        "options": [
+            "밥 거르지 말고 잘 찾아 먹어라",
+            "밥 떠서 잘 차려 먹어라",
+            "밥 거기 있으니 잘 차려 먹어라",
+            "밥 식기 전에 잘 찾아 먹어라"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'거려그넹'은 '떠서'를 의미하고 '촐령'은 '차려'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 30,
+        "difficulty": "고급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "방에서 게임을 하고 있던 철수에게 어머니는 다음과 같이 말하였습니다. 무슨 뜻일까요?'속솜허라'",
+        "options": [
+            "속상해하지 마라",
+            "조용히 해라",
+            "적당히 해라",
+            "청소 좀 해라"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'속솜허라'는 '조용히 해라'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 31,
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'실프다'는 무슨 뜻일까요?",
+        "options": [
+            "슬프다",
+            "실망하다",
+            "귀찮다",
+            "졸리다"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'실프다'는 '귀찮다'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 32,
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'간세부린다'는 무슨 뜻일까요?",
+        "options": [
+            "게으름 피운다",
+            "간식을 준비한다",
+            "간간히 먹는다",
+            "청소한다"
+        ],
+        "correctAnswer": 0,
+        "explanation": "'간세부린다'는 '게으름 피운다'를 의미하는 제주어입니다."
+    },
+    {
+        "id": 33,
+        "difficulty": "중급",
+        "type": "사지선다",
+        "category": "생활",
+        "question": "'시키다'는 무슨 뜻일까요?",
+        "options": [
+            "시켰다",
+            "씻다",
+            "먹었다",
+            "켰다"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'시키다'는 '씻다'를 의미하는 제주어입니다."
     }
 ],
 "metadata": {
@@ -284,12 +499,12 @@
         "nature"
         ],
         "difficulties": [
-        "elementary",
-        "middle",
-        "high"
+        "초급",
+        "중급",
+        "고급"
         ],
         "types": [
-        "multiple_choice"
+        "사지선다"
         ]
     }
 }
