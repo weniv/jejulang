@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제주어 퀴즈 서비스</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-image: url('asset/img/1.png');
+            /* background-size: 100% 100%;  또는 contain */
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;  /* 이미지 반복 방지 */
+            background-color: #fef7ea;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%; /* 모바일 대응 */
+            max-height: 80vh; /* 높이 제한 */
+            overflow-y: auto; /* 스크롤 활성화 */
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-container {
+            margin-bottom: 2rem;
+            height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+        
+        #next-btn {
+            margin-top: 1rem;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #next-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* 스크롤바 스타일링 */
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .option {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .option.selected {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .progress {
+            margin-bottom: 1rem;
+            background-color: #f0f0f0;
+            border-radius: 0.5rem;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #28a745;
+            transition: width 0.3s;
+        }
+        .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .explanation {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0.5rem;
+            border: 1px solid #dee2e6;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .option {
+            position: relative;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
+        .option.selected {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* 버튼 위치 고정 */
+        .button-container {
+            position: sticky;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 0;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .result-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            color: #007bff;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .message.high-score {
+            color: #28a745;
+        }
+
+        .encourage {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        /* 오답 노트 스타일링 */
+        .review-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-container h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .review-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #eee;
+        }
+
+        .review-item h3 {
+            color: #dc3545;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .review-item p {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        .review-item p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem auto;
+                padding: 1rem;
+                width: 95%;
+            }
+
+            .quiz-container {
+                height: 430px; /* 모바일에서는 좀 더 작게 */
+            }
+
+            .result-content {
+                padding: 1.5rem;
+            }
+
+            .score {
+                font-size: 1.2rem;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+
+            .review-container {
+                padding: 1.5rem;
+            }
+
+            .review-item {
+                padding: 1rem;
+            }
+        }
+
+        .reload {
+            margin-top: 10px;
+            padding: 0.6rem 1.3rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>제주어 퀴즈</h1>
+            <div class="controls">
+                <button onclick="setDifficulty('elementary')">초급</button>
+                <button onclick="setDifficulty('middle')">중급</button>
+                <button onclick="setDifficulty('high')">고급</button>
+                <button onclick="setRandomQuiz()">랜덤</button>
+            </div>
+        </header>
+    
+        <div class="quiz-progress">
+            <div class="progress">
+                <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <div class="progress-text">0/0</div>
+        </div>
+    
+        <div class="quiz-container">
+            <div class="question"></div>
+            <div class="options"></div>
+            <button onclick="nextQuestion()" id="next-btn" style="display: none;">다음 문제</button>
+        </div>
+    
+        <div class="result"></div>
+        <div class="review-container" style="display: none;"></div>
+    </div>
+
+    <script>
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedAnswer = null;
+        let wrongAnswers = []; // 오답 저장 배열
+        let backgroundImages = Array.from({length: 15}, (_, i) => `${i + 1}.png`);
+
+        async function loadQuestions() {
+            try {
+                const response = await fetch('questions.json');
+                const data = await response.json();
+                // console.log('문제를 불러왔습니다:', data);
+                return data;
+            } catch (error) {
+                console.error('문제를 불러오는데 실패했습니다:', error);
+                return [];
+            }
+        }
+
+        function changeBackground() {
+            const randomImage = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+            document.body.style.backgroundImage = `url('asset/img/${randomImage}')`;
+            
+            const imageNumber = parseInt(randomImage.split('.')[0]);
+            
+            // 이미지별 배경색 설정
+            const backgroundColors = {
+                1: '#fef7ea',
+                2: '#000648',
+                3: '#305397',
+                4: '#e9f3fd',
+                5: '#fadf94',
+                6: '#7b9646',
+                7: '#699644',
+                8: '#b1d6ee',
+                9: '#c0ddf0',
+                10: '#534624',
+                11: '#8cb2ce',
+                12: '#364161',
+                13: '#fdf6eb',
+                14: '#f6e8bf',
+                15: '#f4f2ee'
+            };
+
+            document.body.style.backgroundColor = backgroundColors[imageNumber];
+        }
+
+        async function setDifficulty(level) {
+            const data = await loadQuestions();
+            currentQuestions = data.questions.filter(q => q.difficulty === level);
+            currentQuestionIndex = 0;
+            score = 0;
+            wrongAnswers = []; // 오답 배열 초기화
+            document.querySelector('.quiz-container').style.display = 'block';
+            document.querySelector('.result').style.display = 'none';
+            document.querySelector('.review-container').style.display = 'none';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                showResult();
+                return;
+            }
+
+            changeBackground();
+            const question = currentQuestions[currentQuestionIndex];
+            document.querySelector('.question').textContent = question.question;
+            
+            const optionsContainer = document.querySelector('.options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option;
+                optionElement.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionElement);
+            });
+
+            // 다음 문제 버튼 숨기기
+            document.getElementById('next-btn').style.display = 'none';
+            
+            updateProgress();
+        }
+
+        function selectOption(index) {
+            const options = document.querySelectorAll('.option');
+            
+            // 이미 선택된 옵션이 있다면 선택 취소
+            options.forEach(option => option.classList.remove('selected'));
+            
+            // 새로운 옵션 선택
+            options[index].classList.add('selected');
+            selectedAnswer = index;
+            
+            // 옵션을 선택하면 바로 다음 문제 버튼 표시
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function checkAnswer() {
+            if (selectedAnswer === null) return;
+
+            const question = currentQuestions[currentQuestionIndex];
+            const correctAnswer = question.correctAnswer;
+            
+            // 오답인 경우 오답 배열에 저장
+            if (selectedAnswer !== correctAnswer) {
+                wrongAnswers.push({
+                    question: question.question,
+                    userAnswer: question.options[selectedAnswer],
+                    correctAnswer: question.options[correctAnswer],
+                    explanation: question.explanation,
+                    cultural_note: question.cultural_note,
+                    usage_example: question.usage_example
+                });
+            } else {
+                score++;
+            }
+
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === null) return;
+
+            // 현재 문제 정답 체크
+            const question = currentQuestions[currentQuestionIndex];
+            const correctAnswer = question.correctAnswer;
+            
+            // 오답인 경우 오답 배열에 저장
+            if (selectedAnswer !== correctAnswer) {
+                wrongAnswers.push({
+                    question: question.question,
+                    userAnswer: question.options[selectedAnswer],
+                    correctAnswer: question.options[correctAnswer],
+                    explanation: question.explanation,
+                    cultural_note: question.cultural_note,
+                    usage_example: question.usage_example
+                });
+            } else {
+                score++;
+            }
+
+            // 다음 문제로 이동
+            selectedAnswer = null;
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex >= currentQuestions.length) {
+                showResult();
+                return;
+            }
+
+            // 다음 문제 표시
+            showQuestion();
+        }
+
+        async function setRandomQuiz() {
+            const data = await loadQuestions();
+            const allQuestions = data.questions;
+            
+            // 전체 문제를 섞기
+            const shuffledQuestions = shuffleArray(allQuestions);
+            
+            // 앞에서 10문제만 선택
+            currentQuestions = shuffledQuestions.slice(0, 10);
+            
+            // 퀴즈 초기화 및 시작
+            currentQuestionIndex = 0;
+            score = 0;
+            wrongAnswers = [];
+            document.querySelector('.quiz-container').style.display = 'block';
+            document.querySelector('.result').style.display = 'none';
+            document.querySelector('.review-container').style.display = 'none';
+            showQuestion();
+        }
+
+        // Fisher-Yates 셔플 알고리즘
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function showResult() {
+            const resultElement = document.querySelector('.result');
+            const progressElement = document.querySelector('.quiz-progress');
+            const controlsElement = document.querySelector('.controls');
+            const percentage = (score / currentQuestions.length) * 100;
+
+            progressElement.style.display = 'none';
+            controlsElement.style.display = 'none';
+
+            // 점수별 메시지
+            const messages = {
+                100: "완벽합니다! 당신은 진정한 제주도민이시군요! 🏆",
+                90: "대단해요! 명예 제주도민으로 인정합니다! 👏",
+                80: "훌륭해요! 제주도에서 살아도 될 것 같네요~ 🌴",
+                70: "꽤 하시네요! 제주 생활이 어렵지 않을 거예요. 😊",
+                60: "좋아요! 제주도에서 기본적인 의사소통은 가능하겠어요. 💪",
+                50: "절반은 아셨네요! 제주도 여행은 무리 없을 것 같아요. ✈️",
+                40: "조금 더 공부가 필요해요! 제주어의 매력에 빠져보세요. 📚",
+                30: "아쉽네요. 하지만 제주어를 공부하시는 모습이 아름답습니다. 💭",
+                20: "제주어가 어려우시죠? 천천히 도전해봐요! 🌱",
+                10: "제주어의 세계에 첫 발을 내딛으셨네요! 시작이 반이에요. 🎯",
+                0: "괜찮아요! 이제부터 제주어의 매력을 알아가 보아요~ 🌊"
+            };
+
+            const roundedScore = Math.round(percentage / 10) * 10;
+
+            resultElement.innerHTML = `
+                <p class="score">점수: ${percentage.toFixed(1)}점! (${score}/${currentQuestions.length})</p>
+                <p class="message">${messages[roundedScore]}</p>
+                <p class="encourage">틀린 문제에 대한 설명을 아래에서 확인해보세요!</p>
+                <button class="reload" onclick="location.reload()">다시 시작</button>
+            `;
+            
+            // 오답 리뷰 표시
+            if (wrongAnswers.length > 0) {
+                const reviewContainer = document.querySelector('.review-container');
+                reviewContainer.innerHTML = `
+                    <h2>오답 노트</h2>
+                    ${wrongAnswers.map((item, index) => `
+                        <div class="review-item">
+                            <h3>${index + 1}. ${item.question}</h3>
+                            <p>제출한 답: ${item.userAnswer}</p>
+                            <p>정답: ${item.correctAnswer}</p>
+                            <p>설명: ${item.explanation}</p>
+                            ${item.cultural_note ? `<p>문화적 배경: ${item.cultural_note}</p>` : ''}
+                            ${item.usage_example ? `<p>사용 예시: ${item.usage_example}</p>` : ''}
+                        </div>
+                    `).join('')}
+                `;
+                reviewContainer.style.display = 'block';
+            }
+            
+            resultElement.style.display = 'block';
+            document.querySelector('.quiz-container').style.display = 'none';
+        }
+
+        function updateProgress() {
+            const progressText = `${currentQuestionIndex + 1}/${currentQuestions.length}`;
+            document.querySelector('.progress-text').textContent = progressText;
+            
+            const progress = (currentQuestionIndex / (currentQuestions.length - 1)) * 100;
+            document.querySelector('.progress-bar').style.width = `${progress}%`;
+        }
+    </script>
+</body>
+</html>

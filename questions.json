@@ -1,0 +1,221 @@
+{
+"questions": [
+    {
+        "id": 1,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'하르방'은 제주어로 무슨 뜻일까요?",
+        "options": [
+            "할아버지",
+            "아버지",
+            "삼촌",
+            "형님"
+        ],
+        "correctAnswer": 0,
+        "explanation": "하르방은 제주어로 '할아버지'를 의미합니다. 제주도의 상징적인 돌하르방에서도 이 단어를 볼 수 있죠.",
+        "cultural_note": "돌하르방은 제주도의 대표적인 문화유산으로, 마을 입구에서 수호신 역할을 했습니다."
+    },
+    {
+        "id": 2,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "daily_conversation",
+        "question": "'가게 감수다'는 무슨 뜻일까요?",
+        "options": [
+            "가게 구경하다",
+            "가게 갑니다",
+            "가게 팝니다",
+            "가게 닫습니다"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'감수다'는 '갑니다'의 제주어입니다.",
+        "usage_example": "학교 감수다 (학교 갑니다)"
+    },
+    {
+        "id": 3,
+        "difficulty": "middle",
+        "type": "multiple_choice",
+        "category": "weather",
+        "question": "'굿닭허다'는 무슨 뜻일까요?",
+        "options": [
+            "닭이 울다",
+            "날씨가 좋다",
+            "기분이 좋다",
+            "운이 좋다"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'굿닭허다'는 '날씨가 좋다'는 뜻입니다.",
+        "usage_example": "오널은 굿닭허다 (오늘은 날씨가 좋다)"
+        },
+    {
+        "id": 4,
+        "difficulty": "middle",
+        "type": "multiple_choice",
+        "category": "food",
+        "question": "'고르다'는 제주어로 무슨 뜻일까요?",
+        "options": [
+            "선택하다",
+            "배고프다",
+            "깎다",
+            "모으다"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'고르다'는 제주어로 '깎다'라는 뜻입니다.",
+        "usage_example": "감률 고르다 (귤을 깎다)"
+    },
+    {
+        "id": 5,
+        "difficulty": "high",
+        "type": "multiple_choice",
+        "category": "advanced_vocabulary",
+        "question": "'거념사리'는 무슨 뜻일까요?",
+        "options": [
+            "그늘",
+            "걱정",
+            "기억",
+            "그리움"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'거념사리'는 '기억'을 의미하는 제주어입니다.",
+        "usage_example": "거념사리에 삭혀둠서 (기억해 두었습니다)"
+    },
+    {
+        "id": 6,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'저슬'은 무슨 뜻일까요?",
+        "options": [
+            "해",
+            "달",
+            "별",
+            "구름"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'저슬'은 '달'을 의미하는 제주어입니다.",
+        "usage_example": "저슬이 밝아 (달이 밝다)",
+        "cultural_note": "제주도에서는 달빛과 관련된 민간신앙이 많이 전해져 왔습니다."
+    },
+    {
+        "id": 7,
+        "difficulty": "middle",
+        "type": "multiple_choice",
+        "category": "daily_conversation",
+        "question": "'몬딱'은 무슨 뜻일까요?",
+        "options": [
+            "조금",
+            "많이",
+            "전부",
+            "빨리"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'몬딱'은 '모두' 또는 '전부'를 의미하는 제주어입니다.",
+        "usage_example": "몬딱 먹어사 (전부 먹어야 해)"
+    },
+    {
+        "id": 8,
+        "difficulty": "high",
+        "type": "multiple_choice",
+        "category": "emotion",
+        "question": "'셍이'는 무슨 뜻일까요?",
+        "options": [
+            "걱정",
+            "기쁨",
+            "분노",
+            "귀찮음"
+        ],
+        "correctAnswer": 3,
+        "explanation": "'셍이'는 '귀찮음'을 의미하는 제주어입니다.",
+        "usage_example": "셍이 나 (귀찮다)"
+    },
+    {
+        "id": 9,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "food",
+        "question": "'마농'은 무슨 뜻일까요?",
+        "options": [
+            "마늘",
+            "양파",
+            "무",
+            "당근"
+        ],
+        "correctAnswer": 0,
+        "explanation": "'마농'은 '마늘'을 의미하는 제주어입니다.",
+        "usage_example": "마농 심으라 (마늘 심어라)",
+        "cultural_note": "제주도는 마늘 재배가 활발한 지역 중 하나입니다."
+    },
+    {
+        "id": 10,
+        "difficulty": "middle",
+        "type": "multiple_choice",
+        "category": "weather",
+        "question": "'뒤웨'는 무슨 뜻일까요?",
+        "options": [
+            "흐림",
+            "태풍",
+            "비",
+            "더위"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'뒤웨'는 '태풍'을 의미하는 제주어입니다.",
+        "usage_example": "뒤웨 분다 (태풍이 분다)",
+        "cultural_note": "제주도는 지리적 특성상 태풍의 영향을 자주 받아왔습니다."
+    },
+    {
+        "id": 11,
+        "difficulty": "high",
+        "type": "multiple_choice",
+        "category": "nature",
+        "question": "'드르'는 무슨 뜻일까요?",
+        "options": [
+            "바다",
+            "산",
+            "들판",
+            "하늘"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'드르'는 '들판'을 의미하는 제주어입니다.",
+        "usage_example": "드르에 가난 (들판에 갔다)",
+        "cultural_note": "제주의 드르는 화산활동으로 형성된 독특한 지형적 특징을 가지고 있습니다."
+    },
+    {
+        "id": 12,
+        "difficulty": "elementary",
+        "type": "multiple_choice",
+        "category": "basic_vocabulary",
+        "question": "'시리'는 무슨 뜻일까요?",
+        "options": [
+            "소리",
+            "빗자루",
+            "신발",
+            "연필"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'시리'는 '빗자루'를 의미하는 제주어입니다.",
+        "usage_example": "시리로 쓸어라 (빗자루로 쓸어라)"
+    }
+],
+"metadata": {
+        "version": "1.0",
+        "last_updated": "2024-03-19",
+        "categories": [
+        "basic_vocabulary",
+        "daily_conversation",
+        "weather",
+        "food",
+        "advanced_vocabulary",
+        "emotion",
+        "nature"
+        ],
+        "difficulties": [
+        "elementary",
+        "middle",
+        "high"
+        ],
+        "types": [
+        "multiple_choice"
+        ]
+    }
+}
