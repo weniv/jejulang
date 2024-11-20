@@ -62,7 +62,7 @@
         .container {
             max-width: 800px;
             width: 90%; /* 모바일 대응 */
-            max-height: 82vh; /* 높이 제한 */
+            max-height: 85vh; /* 높이 제한 */
             overflow-y: auto; /* 스크롤 활성화 */
             padding: 2rem;
             background: rgba(255, 255, 255, 0.8);
@@ -83,7 +83,8 @@
         }
 
         .quiz-container {
-            height: 400px;
+            height: 90%;
+            min-height: 400px;
             overflow-y: auto;
             padding: 1rem;
             border-radius: 0.5rem;
@@ -338,11 +339,11 @@
             }
 
             .controls {
-                gap: 10px;
+                gap: 8px;
             }
 
             .controls button {
-                padding: 0.5rem 0.8rem;
+                padding: 0.5rem 0.7rem;
             }
 
             .quiz-container {
@@ -451,6 +452,10 @@
             min-width: 300px;
         }
 
+        .modal-content h2 {
+            text-align: center;
+        }
+
         .modal-content input {
             display: block;
             width: 100%;
@@ -458,6 +463,11 @@
             margin: 1rem 0;
             border: 1px solid #ddd;
             border-radius: 0.5rem;
+        }
+
+        .modal-content .modal-button-container {
+            display: flex;
+            justify-content: center;
         }
 
         .modal-content button {
@@ -505,7 +515,7 @@
                 <button onclick="setDifficulty('중급')">중급</button>
                 <button onclick="setDifficulty('고급')">고급</button>
                 <button onclick="setRandomQuiz()">랜덤</button>
-                <!-- <button onclick="showBattleModal()">대결</button> -->
+                <button onclick="showBattleModal()">대결</button>
             </div>
         </header>
     
@@ -531,9 +541,11 @@
         <div class="modal-content">
             <h2>대결 모드</h2>
             <input type="text" id="userName" placeholder="이름을 입력하세요" />
-            <input type="text" id="courseId" placeholder="코스 번호를 입력하세요 (1-1000)" />
-            <button onclick="startBattle()">시작하기</button>
-            <button onclick="closeBattleModal()">취소</button>
+            <input type="text" id="courseId" placeholder="방 번호를 입력하세요 (1-1000)" />
+            <div class="modal-button-container">
+                <button onclick="startBattle()">시작하기</button>
+                <button onclick="closeBattleModal()">취소</button>
+            </div>
         </div>
     </div>
 
@@ -763,7 +775,7 @@
 
             if (currentCourseId) {
                 // 대결 모드인 경우
-                const rankings = await submitBattleResult(percentage);
+                let rankings = await submitBattleResult(percentage);
                 
                 let rankingHtml = `
                     <div class="result-content">
@@ -773,11 +785,15 @@
                             <ul class="ranking-list">
                 `;
 
+                // job이 jeju_quiz인 사람들만 필터링해서 정렬
+                rankings = rankings.filter(rank => rank['job'] === 'jeju_quiz');
+                rankings.sort((a, b) => b.int - a.int);
+
                 rankings.forEach((rank, index) => {
-                    const isCurrentUser = rank.userName === currentUserName;
+                    const isCurrentUser = rank.name === currentUserName;
                     rankingHtml += `
                         <li class="${isCurrentUser ? 'current-user' : ''}">
-                            ${index + 1}등: ${rank.userName} - ${rank.score}점
+                            ${index + 1}등: ${rank.name} - ${rank.int}점
                         </li>
                     `;
                 });
@@ -846,12 +862,12 @@
             const courseId = document.getElementById('courseId').value;
             
             if (!userName || !courseId) {
-                alert('이름과 코스 번호를 모두 입력해주세요!');
+                alert('이름과 방 번호를 모두 입력해주세요!');
                 return;
             }
             
             if (courseId < 1 || courseId > 1000) {
-                alert('코스 번호는 1-1000 사이의 숫자여야 합니다.');
+                alert('방 번호는 1-1000 사이의 숫자여야 합니다.');
                 return;
             }
 
@@ -867,19 +883,24 @@
         async function submitBattleResult(score) {
             try {
                 // 점수 제출
-                const response = await fetch(`${API_BASE_URL}/${currentCourseId}/course`, {
+                const response = await fetch(`${API_BASE_URL}/${currentCourseId}/user`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        userName: currentUserName,
-                        score: score
+                        name: currentUserName,
+                        email: '',
+                        phone: '',
+                        country: '',
+                        address: '',
+                        job: 'jeju_quiz',
+                        int: String(score)
                     })
                 });
 
                 // 랭킹 조회
-                const rankingResponse = await fetch(`${API_BASE_URL}/${currentCourseId}/course`);
+                const rankingResponse = await fetch(`${API_BASE_URL}/${currentCourseId}/user`);
                 const rankings = await rankingResponse.json();
                 
                 return rankings;
