@@ -722,9 +722,20 @@
         async function setRandomQuiz() {
             const data = await loadQuestions();
             const allQuestions = data.questions;
-            
+            let shuffledQuestions;
+    
             // 전체 문제를 섞기
-            const shuffledQuestions = shuffleArray(allQuestions);
+            if (!currentCourseId) {
+                // 일반 모드: 완전 랜덤으로 섞기
+                shuffledQuestions = shuffleArray(allQuestions);
+            } else {
+                // 대결 모드: 방별로 10문제 고정 세트 사용
+                const seed = currentCourseId; // 방 번호를 시드로 사용
+                shuffledQuestions = allQuestions.sort((a, b) => {
+                    return ((seed * a.id) % allQuestions.length) - ((seed * b.id) % allQuestions.length);
+                });
+            }
+    
             
             // 앞에서 10문제만 선택
             currentQuestions = shuffledQuestions.slice(0, 10);
