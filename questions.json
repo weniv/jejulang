@@ -475,7 +475,7 @@
         "difficulty": "중급",
         "type": "사지선다",
         "category": "생활",
-        "question": "'시키다'는 무슨 뜻일까요?",
+        "question": "'시치다'는 무슨 뜻일까요?",
         "options": [
             "시켰다",
             "씻다",
@@ -483,7 +483,8 @@
             "켰다"
         ],
         "correctAnswer": 1,
-        "explanation": "'시키다'는 '씻다'를 의미하는 제주어입니다."
+        "explanation": "'시치다'는 '씻다'를 의미하는 제주어입니다.",
+        "usage_example": "애기 데려강 시쳐라~ (아기 데려가서 씻겨라)"
     }
 ],
 "metadata": {
