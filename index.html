@@ -498,6 +498,13 @@
             background-color: #e3f2fd;
             font-weight: bold;
         }
+
+        .service-explain {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -510,6 +517,7 @@
     <div class="container">
         <header>
             <h1>제주어 퀴즈</h1>
+            <p class="service-explain">제주어를 친구들과 함께 풀어보고 등수를 매겨보세요!</p>
             <div class="controls">
                 <button onclick="setDifficulty('초급')">초급</button>
                 <button onclick="setDifficulty('중급')">중급</button>
@@ -563,6 +571,17 @@
         let currentCourseId = null;
         let currentUserName = null;
 
+        document.querySelector('.quiz-progress').style.display = 'none';
+        document.querySelector('.quiz-container').style.display = 'none';
+        document.querySelector('.service-explain').style.display = 'block';
+
+        function init() {
+            document.querySelector('.quiz-progress').style.display = 'block';
+            document.querySelector('.quiz-container').style.display = 'block';
+            document.querySelector('.service-explain').style.display = 'none';
+
+        }
+
         async function loadQuestions() {
             try {
                 const response = await fetch('questions.json');
@@ -604,6 +623,7 @@
         }
 
         async function setDifficulty(level) {
+            init();
             const data = await loadQuestions();
             currentQuestions = data.questions.filter(q => q.difficulty === level);
             currentQuestionIndex = 0;
@@ -720,6 +740,7 @@
         }
 
         async function setRandomQuiz() {
+            init();
             const data = await loadQuestions();
             const allQuestions = data.questions;
             let shuffledQuestions;
